@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import ImageLoader from '../components/ImageLoader'
 import { CharacterType, characters } from '../const/character'
 import Select from 'react-select'
-import { customStyles } from '../components/CharacterSelectStyles'
+import customStyles from '../components/CharacterSelectStyles'
 import style from '../components/CustomStyle.module.css'
 import { useRouter } from 'next/router'
 
@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 const Home: NextPage = () => {
   const [character, setCharacter] = useState<CharacterType | null>({ value: "loading.gif", label: "Loading..." })
   const router = useRouter()
-  const { width, height } = router.query
+  let { width, height, textSize, textColor } = router.query
   let tw = 200
   let th = 100
   if (width !== undefined) {
@@ -20,8 +20,9 @@ const Home: NextPage = () => {
   if (height !== undefined) {
     th = Math.max(tw, parseInt(height as string))
   }
-
-
+  textColor = textColor as string
+  textSize = textSize as string
+  // console.log(textSize, textColor)
   return (
     <>
       <div className={style.container} style={{
@@ -34,7 +35,7 @@ const Home: NextPage = () => {
         <div className='character'>
           <Select
             id='long-value-select' instanceId='long-value-select'
-            styles={customStyles}
+            styles={customStyles({ textColor, textSize })}
             value={character}
             onChange={setCharacter}
             options={characters}
