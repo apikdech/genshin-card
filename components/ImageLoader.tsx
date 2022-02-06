@@ -9,5 +9,6 @@ export default ({ imageName }: ImageLoaderType) => (
         src={`/assets/${imageName}`}
         width='100%'
         height='100%'
+        alt={`${imageName}`}
     />
 )
