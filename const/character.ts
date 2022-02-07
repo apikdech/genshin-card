@@ -3,6 +3,12 @@ export type CharacterType = {
     label: string
 }
 
+export type CharacterState = {
+    id: string
+    value: string
+    label: string
+}
+
 export const characters: CharacterType[] = [
     { value: 'aether.webp', label: 'Aether' },
     { value: 'albedo.png', label: 'Albedo' },

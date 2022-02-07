@@ -1,19 +1,27 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
-import ImageLoader from '../components/ImageLoader'
-import { CharacterType, characters } from '../const/character'
-import Select from 'react-select'
-import customStyles from '../components/CharacterSelectStyles'
+import { CharacterState } from '../const/character'
 import style from '../components/CustomStyle.module.css'
 import { useRouter } from 'next/router'
+import CharacterDisplay from '../components/CharacterDisplay'
 
+let initState: CharacterState[] = Array.from({ length: 7 }, (v, k) => k).map(id => ({
+  id: id.toString(),
+  value: 'loading.gif',
+  label: 'Loading...'
+} as CharacterState))
 
 const Home: NextPage = () => {
-  const [character, setCharacter] = useState<CharacterType | null>({ value: "loading.gif", label: "Loading..." })
   const router = useRouter()
-  let { width, height, textSize, textColor } = router.query
+  let { width, height, textSize, textColor, marginLeft, layout } = router.query
+
   let tw = 200
-  let th = 100
+  let th = 150
+  let ml = marginLeft as string ?? '-80px'
+  let num = Math.max(parseInt(layout as string), 1)
+  if (isNaN(num)) {
+    num = 1
+  }
   if (width !== undefined) {
     tw = Math.max(tw, parseInt(width as string))
   }
@@ -22,25 +30,25 @@ const Home: NextPage = () => {
   }
   textColor = textColor as string
   textSize = textSize as string
-  // console.log(textSize, textColor)
+
+  const [characterState, setCharacterState] = useState<CharacterState[]>(initState)
+
   return (
     <>
-      <div className={style.container} style={{
-        width: tw,
-        height: th
-      }}>
-        <div className={style.image}>
-          <ImageLoader imageName={character?.value} />
-        </div>
-        <div className='character'>
-          <Select
-            id='long-value-select' instanceId='long-value-select'
-            styles={customStyles({ textColor, textSize })}
-            value={character}
-            onChange={setCharacter}
-            options={characters}
+      <div className={style['flex-container']}>
+        {Array.from({ length: num }, (value, key) =>
+          <CharacterDisplay
+            id={key.toString()}
+            characterState={characterState}
+            setCharacterState={setCharacterState}
+            tw={tw}
+            th={th}
+            textColor={textColor}
+            textSize={textSize}
+            key={key.toString()}
+            marginLeft={key === 0 ? 0 : ml}
           />
-        </div>
+        )}
       </div>
     </>
   )
