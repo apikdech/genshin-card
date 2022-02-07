@@ -13,11 +13,12 @@ let initState: CharacterState[] = Array.from({ length: 7 }, (v, k) => k).map(id 
 
 const Home: NextPage = () => {
   const router = useRouter()
-  let { width, height, textSize, textColor, marginLeft, layout } = router.query
+  let { width, height, textSize, textColor, distance, layout, transparent, shadowSize, shadowColor } = router.query
 
   let tw = 200
   let th = 150
-  let ml = marginLeft as string ?? '-80px'
+  let dist = Math.max(parseInt(distance as string) ?? 0, 0)
+  let marginLeft = dist - 100 + 'px'
   let num = Math.max(parseInt(layout as string), 1)
   if (isNaN(num)) {
     num = 1
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
     th = Math.max(tw, parseInt(height as string))
   }
   textColor = textColor as string
-  textSize = textSize as string
+  let tsize = Math.min(Math.max(parseInt(textSize as string) ?? 20, 1), 25)
 
   const [characterState, setCharacterState] = useState<CharacterState[]>(initState)
 
@@ -44,9 +45,12 @@ const Home: NextPage = () => {
             tw={tw}
             th={th}
             textColor={textColor}
-            textSize={textSize}
+            textSize={tsize}
+            shadowColor={shadowColor}
+            shadowSize={shadowSize}
             key={key.toString()}
-            marginLeft={key === 0 ? 0 : ml}
+            transparent={transparent === 'true' ? true : false}
+            marginLeft={key === 0 ? 0 : marginLeft}
           />
         )}
       </div>

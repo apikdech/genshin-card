@@ -5,7 +5,7 @@ import style from './CustomStyle.module.css'
 import { CharacterState } from '../const/character'
 import getCharacters from '../utils/GetCharacters'
 
-export default function CharacterDisplay({ id, characterState, setCharacterState, tw, th, textColor, textSize, marginLeft }) {
+export default function CharacterDisplay({ id, characterState, setCharacterState, tw, th, textColor, textSize, marginLeft, transparent, shadowSize, shadowColor }) {
     return (
         <div className={style.container} style={{
             width: tw,
@@ -18,7 +18,7 @@ export default function CharacterDisplay({ id, characterState, setCharacterState
             <div className='character'>
                 <Select
                     id='long-value-select' instanceId='long-value-select'
-                    styles={customStyles({ textColor, textSize })}
+                    styles={customStyles({ textColor, textSize, shadowSize, shadowColor, transparent })}
                     value={{ value: characterState[id].value, label: characterState[id].label }}
                     onChange={(param) => setCharacterState(characterState.map((ch: CharacterState) => ch.id === id ? { ...ch, label: param!.label, value: param!.value } : { ...ch }))}
                     options={getCharacters(characterState)}

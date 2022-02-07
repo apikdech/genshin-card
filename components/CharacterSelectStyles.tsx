@@ -1,4 +1,4 @@
-export default ({ textColor, textSize }: { textColor: string, textSize: string }) => ({
+export default ({ textColor, textSize, shadowColor, shadowSize, transparent }: { textColor: string, textSize: string, shadowColor: string, shadowSize: string, transparent: boolean }) => ({
     menu: (provided: any) => ({
         ...provided,
         width: 'auto',
@@ -26,9 +26,9 @@ export default ({ textColor, textSize }: { textColor: string, textSize: string }
         overflow: 'hidden',
         whiteSpace: 'no-wrap',
         margin: '0 auto',
-        fontSize: textSize,
+        fontSize: textSize + 'px',
         fontWeight: 'bold',
-        color: '#' + textColor,
+        color: textColor,
         // color: 'blue'
     }),
     valueContainer: (provided: any) => ({
@@ -50,8 +50,12 @@ export default ({ textColor, textSize }: { textColor: string, textSize: string }
     }),
     singleValue: (provided: any, state: any) => ({
         ...provided,
-        fontSize: textSize,
-        color: '#' + textColor,
+        fontSize: textSize + 'px',
+        // fontSize: '25px',
+        color: transparent ? 'transparent' : textColor,
+        textShadow: `1px 1px ${shadowSize}px ${shadowColor}`,
+        // '1px 1px 10px #1f63d4',
+        // color: 'transparent',
         // fontSize: '150%',
         fontWeight: 'bold',
         // color: 'blue'
