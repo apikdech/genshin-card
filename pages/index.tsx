@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   let { width, height, textSize, textColor, distance, layout, transparent, shadowSize, shadowColor } = router.query
 
   let tw = 200
-  let th = 150
+  let th = 250
   let dist = Math.max(parseInt(distance as string) ?? 0, 0)
   let marginLeft = dist - 100 + 'px'
   let num = Math.max(parseInt(layout as string), 1)
@@ -36,7 +36,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className={style['flex-container']}>
+      <div className={style['flex-container']} style={{
+        position: 'fixed'
+      }}>
         {Array.from({ length: num }, (value, key) =>
           <CharacterDisplay
             id={key.toString()}

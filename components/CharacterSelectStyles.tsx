@@ -53,7 +53,7 @@ export default ({ textColor, textSize, shadowColor, shadowSize, transparent }: {
         fontSize: textSize + 'px',
         // fontSize: '25px',
         color: transparent ? 'transparent' : textColor,
-        textShadow: `1px 1px ${shadowSize}px ${shadowColor}`,
+        textShadow: transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`,
         // '1px 1px 10px #1f63d4',
         // color: 'transparent',
         // fontSize: '150%',
