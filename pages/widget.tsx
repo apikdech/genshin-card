@@ -1,12 +1,12 @@
-import { useState } from 'react'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import style from '../components/CustomStyle.module.css'
+import { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { CharacterState } from '../const/character'
-import CharacterDisplay from '../components/CharacterDisplay'
-import Select from 'react-select'
+import Select from 'react-select';
+import CharacterDisplay from '../components/CharacterDisplay';
+import style from '../components/CustomStyle.module.css';
+import { CharacterState } from '../const/character';
 import { initCharacterState } from '../utils/Utils';
 
 export default function Widget() {

@@ -1,12 +1,12 @@
 import Image from 'next/image'
 
 type ImageLoaderType = {
-  imageName: string | undefined
+  imageName: string
 }
 
 export default ({ imageName }: ImageLoaderType) => (
   <Image
-    src={`/assets/${imageName}`}
+    src={imageName}
     width='100%'
     height='100%'
     alt={`${imageName}`}

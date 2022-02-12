@@ -1,11 +1,17 @@
+import { useContext } from 'react'
 import Select from 'react-select'
-import ImageLoader from './ImageLoader'
+import { CharacterState } from '../const/character'
+import { DatabaseContext } from '../utils/Database'
+import { getCharacters } from '../utils/GetCharacters'
 import customStyles from './CharacterSelectStyles'
 import style from './CustomStyle.module.css'
-import { CharacterState } from '../const/character'
-import getCharacters from '../utils/GetCharacters'
+import ImageLoader from './ImageLoader'
 
 export default function CharacterDisplay({ id, characterState, setCharacterState, tw, th, textColor, textSize, marginLeft, transparent, shadowSize, shadowColor }) {
+  const database = useContext(DatabaseContext)
+  if (database._getCharKeys().length === 0) {
+    database.reloadDataFromServer()
+  }
   return (
     <div className={style.container} style={{
       width: tw,
@@ -21,7 +27,7 @@ export default function CharacterDisplay({ id, characterState, setCharacterState
           styles={customStyles({ textColor, textSize, shadowSize, shadowColor, transparent })}
           value={{ value: characterState[id].value, label: characterState[id].label }}
           onChange={(param) => setCharacterState(characterState.map((ch: CharacterState) => ch.id === id ? { ...ch, label: param!.label, value: param!.value } : { ...ch }))}
-          options={getCharacters(characterState)}
+          options={getCharacters(database, characterState)}
         />
       </div>
     </div>

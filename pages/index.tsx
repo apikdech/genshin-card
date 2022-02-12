@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
-import { CharacterState } from '../const/character'
-import style from '../components/CustomStyle.module.css'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import CharacterDisplay from '../components/CharacterDisplay'
+import style from '../components/CustomStyle.module.css'
+import { CharacterState } from '../const/character'
 import { initCharacterState } from '../utils/Utils'
 
 const Home: NextPage = () => {
