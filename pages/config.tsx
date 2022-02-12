@@ -7,7 +7,7 @@ const CharacterConfig = dynamic(() => import("../components/CharacterConfig"), {
   ssr: false
 })
 
-export default function config() {
+export default function Config() {
   const [source, setSource] = useState<string>('')
   const [label, setLabel] = useState<string>('')
   const database = useContext(DatabaseContext)
