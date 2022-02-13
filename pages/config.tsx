@@ -13,6 +13,7 @@ export default function Config() {
   const database = useContext(DatabaseContext)
   const [charKeyList, setCharKeyList] = useState<string[]>(() => getCharacterKeyList(database))
   const [state, setState] = useState<number>(() => charKeyList.length + 1)
+  const [showCharacter, setShowCharacter] = useState<boolean>(false)
 
   useEffect(() => {
     setState(() => {
@@ -21,63 +22,82 @@ export default function Config() {
   }, [charKeyList])
   return (
     <DatabaseContext.Provider value={database}>
-      <table>
-        <tbody>
-          <tr>
-            <th>
-              Label
-            </th>
-            <th>
-              Source
-            </th>
-            <th>
-              Preview
-            </th>
-            <th>
-              Delete?
-            </th>
-          </tr>
-          {/* <div suppressHydrationWarning={true}> */}
-          {!!charKeyList && charKeyList.map(charKey =>
-            <CharacterConfig
-              key={charKey}
-              charKeyList={charKeyList}
-              setCharKeyList={setCharKeyList}
-              characterKey={charKey}
-            />
-          )}
-          <tr>
-            <td>
-              <input onChange={(e) => setLabel(e.target.value)}></input>
-            </td>
-            <td>
-              <input onChange={(e) => setSource(e.target.value)}></input>
-            </td>
-            <td>
-              <button onClick={() => {
-                if (label.length > 0 && source.length > 0) {
-                  database.createChar(state!.toString(), buildChar(label, source))
-                  setCharKeyList(oldState => [...oldState, `char_${state}`])
-                }
-              }}>
-                Save
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={() => {
-        database.clear()
-        setCharKeyList([])
-      }}>
-        Clear Database {source}
-      </button>
-      <button onClick={() => {
-        database.reloadDataFromServer()
-        setCharKeyList(getCharacterKeyList(database))
-      }}>
-        Set Config as Default
-      </button>
+      <div style={{ marginLeft: '5%', marginRight: '5%' }}>
+        <button onClick={() => setShowCharacter(!showCharacter)}>
+          List Characters: {charKeyList.length}
+        </button>
+        {!!showCharacter &&
+          <table>
+            <tbody>
+              <tr>
+                <th style={{ width: '10%' }}>
+                  Label
+                </th>
+                <th>
+                  Source
+                </th>
+                <th style={{ width: '10%' }}>
+                  Preview
+                </th>
+                <th style={{ width: '10%' }}>
+                  Action
+                </th>
+              </tr>
+              {/* <div suppressHydrationWarning={true}> */}
+              {!!charKeyList && charKeyList.map(charKey =>
+                <CharacterConfig
+                  key={charKey}
+                  charKeyList={charKeyList}
+                  setCharKeyList={setCharKeyList}
+                  characterKey={charKey}
+                />
+              )}
+              <tr>
+                <td>
+                  <input style={{ width: '100%' }} onChange={(e) => setLabel(e.target.value)} placeholder='Label'></input>
+                </td>
+                <td>
+                  <input style={{ width: '100%' }} onChange={(e) => setSource(e.target.value)} placeholder='Source URL'></input>
+                </td>
+                <td>
+                  {/* <ImageLoader imageName={source} /> */}
+                </td>
+                <td>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                    <button onClick={() => {
+                      if (label.length > 0 && source.length > 0) {
+                        database.createChar(state!.toString(), buildChar(label, source))
+                        setCharKeyList(oldState => [...oldState, `char_${state}`])
+                      }
+                    }}>
+                      Save
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        }
+        <button onClick={() => {
+          database.clear()
+          setCharKeyList([])
+        }}>
+          Clear Database {source}
+        </button>
+        <button onClick={() => {
+          database.reloadDataFromServer()
+          setCharKeyList(getCharacterKeyList(database))
+        }}>
+          Restore Config to Default
+        </button>
+        <button>
+          Export Data
+        </button>
+        <button>
+          Import Data
+        </button>
+      </div>
     </DatabaseContext.Provider>
   )
 }

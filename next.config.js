@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['cdn.discordapp.com']
+    domains: [
+      'cdn.discordapp.com',
+      'media.discordapp.net',
+      'pbs.twimg.com'
+    ]
   }
   // reactStrictMode: true,
 }

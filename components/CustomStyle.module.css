@@ -140,3 +140,24 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+
+.trash:hover {
+  filter: invert(10%) sepia(83%) saturate(3575%) hue-rotate(354deg) brightness(98%) contrast(117%);
+}
+
+.pencil:hover {
+  filter: invert(28%) sepia(79%) saturate(1246%) hue-rotate(83deg) brightness(101%) contrast(106%);
+}
+
+.input-noborder {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  text-align: center;
+  width: 100%;
+}
+
+.input-noborder:focus {
+  outline: none!important;
+}
