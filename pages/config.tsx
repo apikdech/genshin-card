@@ -1,6 +1,8 @@
 import dynamic from "next/dynamic"
 import { useContext, useEffect, useState } from "react"
 import { DatabaseContext } from "../utils/Database"
+import { dbStorage } from "../utils/DBStorage"
+import { download, exportChar } from "../utils/Export"
 import { getCharacterKeyList } from "../utils/GetCharacters"
 import { buildChar } from "../utils/Utils"
 const CharacterConfig = dynamic(() => import("../components/CharacterConfig"), {
@@ -91,7 +93,7 @@ export default function Config() {
         }}>
           Restore Config to Default
         </button>
-        <button>
+        <button onClick={() => download(JSON.stringify(exportChar(dbStorage)))}>
           Export Data
         </button>
         <button>
