@@ -53,6 +53,7 @@ export const characters: CharacterType[] = [
     { value: 'xiao.png', label: 'Xiao' },
     { value: 'xingqiu.png', label: 'Xingqiu' },
     { value: 'xinyan.png', label: 'Xinyan' },
+    { value: 'yae.png', label: 'Yae Miko' },
     { value: 'yanfei.png', label: 'Yanfei' },
     { value: 'yoimiya.png', label: 'Yoimiya' },
     { value: 'yunjin.png', label: 'Yun Jin' },
