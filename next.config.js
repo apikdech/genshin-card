@@ -7,7 +7,7 @@ const nextConfig = {
       'pbs.twimg.com'
     ]
   },
-  assetPrefix: '/genshin-card/',
+  // assetPrefix: '/genshin-card/',
   env: {
     BACKEND_URL: process.env.BACKEND_URL
   },
