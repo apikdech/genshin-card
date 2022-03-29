@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "files.insertFinalNewline": true,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    }
+}
