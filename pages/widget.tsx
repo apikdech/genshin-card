@@ -27,8 +27,7 @@ export default function Widget() {
     value: idx + 1,
     label: (idx + 1).toString()
   }))
-
-  let word = `https://genshin-card-beta.vercel.app/?layout=${layout ? layout.value : '1'}&textSize=${fontSize ? fontSize : '100'}&distance=${distance}&textColor=${encodeURIComponent(color)}&shadowSize=${shadowSize}&shadowColor=${encodeURIComponent(shadowColor)}&transparent=${transparent.toString()}`
+  let word = `${process.env.BACKEND_URL}/?layout=${layout ? layout.value : '1'}&textSize=${fontSize ? fontSize : '100'}&distance=${distance}&textColor=${encodeURIComponent(color)}&shadowSize=${shadowSize}&shadowColor=${encodeURIComponent(shadowColor)}&transparent=${transparent.toString()}`
   return (
     <>
       <div className='container'>
