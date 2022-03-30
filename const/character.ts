@@ -15,6 +15,7 @@ export const characters: CharacterType[] = [
     { value: 'aloy.png', label: 'Aloy' },
     { value: 'amber.png', label: 'Amber' },
     { value: 'ayaka.png', label: 'Ayaka' },
+    { value: 'ayato.png', label: 'Ayato' },
     { value: 'barbara.png', label: 'Barbara' },
     { value: 'beidou.png', label: 'Beidou' },
     { value: 'bennett.webp', label: 'Bennett' },
