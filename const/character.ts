@@ -34,6 +34,7 @@ export const characters: CharacterType[] = [
     { value: 'kazuha.png', label: 'Kazuha' },
     { value: 'keqing.png', label: 'Keqing' },
     { value: 'kokomi.png', label: 'Kokomi' },
+    { value: 'kuki.webp', label: 'Kuki Shinobu' },
     { value: 'klee.png', label: 'Klee' },
     { value: 'lisa.png', label: 'Lisa' },
     { value: 'lumine.png', label: 'Lumine' },
@@ -56,6 +57,7 @@ export const characters: CharacterType[] = [
     { value: 'xinyan.png', label: 'Xinyan' },
     { value: 'yae.png', label: 'Yae Miko' },
     { value: 'yanfei.png', label: 'Yanfei' },
+    { value: 'yelan.webp', label: 'Yelan' },
     { value: 'yoimiya.png', label: 'Yoimiya' },
     { value: 'yunjin.png', label: 'Yun Jin' },
     { value: 'zhongli.png', label: 'Zhongli' }
