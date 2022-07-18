@@ -48,6 +48,7 @@ export const characters: CharacterType[] = [
     { value: 'sara.png', label: 'Kujou Sara' },
     { value: 'sayu.webp', label: 'Sayu' },
     { value: 'shenhe.png', label: 'Shenhe' },
+    { value: 'heizou.png', label: 'Shikanoin Heizou' },
     { value: 'sucrose.png', label: 'Sucrose' },
     { value: 'thoma.png', label: 'Thoma' },
     { value: 'venti.png', label: 'Venti' },
