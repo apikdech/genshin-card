@@ -12,6 +12,7 @@ export type CharacterState = {
 export const characters: CharacterType[] = [
     { value: 'aether.webp', label: 'Aether' },
     { value: 'albedo.png', label: 'Albedo' },
+    { value: 'alhaitham.png', label: 'Alhaitham' },
     { value: 'aloy.png', label: 'Aloy' },
     { value: 'amber.png', label: 'Amber' },
     { value: 'ayaka.png', label: 'Ayaka' },
@@ -68,6 +69,7 @@ export const characters: CharacterType[] = [
     { value: 'xinyan.png', label: 'Xinyan' },
     { value: 'yae.png', label: 'Yae Miko' },
     { value: 'yanfei.png', label: 'Yanfei' },
+    { value: 'yaoyao.webp', label: 'Yaoyao' },
     { value: 'yelan.webp', label: 'Yelan' },
     { value: 'yoimiya.png', label: 'Yoimiya' },
     { value: 'yunjin.png', label: 'Yun Jin' },
