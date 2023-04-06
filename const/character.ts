@@ -39,6 +39,7 @@ export const characters: CharacterType[] = [
     { value: 'itto.png', label: 'Itto' },
     { value: 'jean.png', label: 'Jean' },
     { value: 'kaeya.png', label: 'Kaeya' },
+    { value: 'kaveh.webp', label: 'Kaveh' },
     { value: 'kazuha.png', label: 'Kazuha' },
     { value: 'keqing.png', label: 'Keqing' },
     { value: 'kokomi.png', label: 'Kokomi' },
