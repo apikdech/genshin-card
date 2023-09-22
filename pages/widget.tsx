@@ -65,7 +65,7 @@ export default function Widget() {
               min={1}
               max={25}
               value={fontSize}
-              onChange={(value) => setFontSize(value)}
+              onChange={(value) => setFontSize(value[0])}
             />
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function Widget() {
               min={0}
               max={200}
               value={distance}
-              onChange={(value) => setDistance(value)}
+              onChange={(value) => setDistance(value[0])}
             />
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function Widget() {
               min={-1}
               max={50}
               value={shadowSize}
-              onChange={(value) => setShadowSize(value)}
+              onChange={(value) => setShadowSize(value[0])}
             />
           </div>
         </div>
