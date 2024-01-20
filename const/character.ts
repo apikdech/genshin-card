@@ -59,7 +59,7 @@ export const characters: CharacterType[] = [
     { value: 'mona.png', label: 'Mona' },
     { value: 'nahida.webp', label: 'Nahida' },
     { value: 'navia.webp', label: 'Navia' },
-    { value: 'neuvilette.webp', label: 'Neuvilette' },
+    { value: 'neuvillette.webp', label: 'Neuvilette' },
     { value: 'nilou.png', label: 'Nilou' },
     { value: 'ningguang.png', label: 'Ningguang' },
     { value: 'noelle.webp', label: 'Noelle' },
