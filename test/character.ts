@@ -37,7 +37,7 @@ export const characters: CharacterType[] = [
     { value: 'fischl.png', label: 'Fischl' },
     { value: 'freminet.png', label: 'Freminet' },
     { value: 'furina.webp', label: 'Furina' },
-    { value: 'gaming.png', label: 'Gaming '},
+    { value: 'gaming.png', label: 'Gaming ' },
     { value: 'ganyu.png', label: 'Ganyu' },
     { value: 'gorou.png', label: 'Gorou' },
     { value: 'hutao.png', label: 'Hu Tao' },
