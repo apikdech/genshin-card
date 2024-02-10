@@ -1,4 +1,4 @@
-import type { CharacterState } from "../const/character";
+import { characters, type CharacterState, type CharacterType } from "../const/character";
 
 export const parseMarginLeft = ((distance: string | undefined) => {
   let dist = 0;
@@ -27,5 +27,17 @@ export const initState = ((num: number) => {
     value: 'loading.gif',
     label: 'Loading...'
   } as CharacterState))
+  
   return state;
-}) 
+})
+
+export const getCharacters = ((excluded: CharacterState[]) => {
+  let result: CharacterType[] = characters;
+
+  for (let index = 0; index < excluded.length; index++) {
+    const exChar: CharacterType = { value: excluded[index].value, label: excluded[index].label }
+    result = result.filter(item => item.label !== exChar.label)
+  }
+
+  return result
+})
