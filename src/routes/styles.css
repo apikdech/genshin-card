@@ -3,3 +3,11 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-family: var(--font-body);
 }
+
+.value-container {
+	justify-content: center;
+}
+
+input::placeholder {
+	overflow: visible;
+}

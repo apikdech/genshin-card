@@ -1,36 +1,48 @@
 <script lang="ts">
 	import Select from 'svelte-select';
-	import type { CharacterState } from '../const/character';
-	import { getCharacters } from '$lib/utils';
+	import { getCharacterState, getCharacters } from '$lib/utils';
 
-	export let id: string;
-	export let characterState: CharacterState[];
+	export let id: number;
 	export let textColor: string;
 	export let textSize: number;
 	export let marginLeft: string;
 	export let transparent: boolean;
 	export let shadowSize: string;
 	export let shadowColor: string;
+	export let totalCards: number;
 
-	function setImage(event: CustomEvent) {
-		const props = event.detail as CharacterState;
-		img = `/assets/${props.value}`;
-		alt = props.label;
+	const characterState = getCharacterState(totalCards);
+
+	function handleChange(event: CustomEvent) {
+		const { label, value } = event.detail;
+		$characterState[id].label = label;
+		$characterState[id].value = value;
 	}
 
-	const style = `font-weight:bold; font-size:${textSize}px; color:${transparent ? 'transparent' : textColor};`;
+	const fontColor = `color:${transparent ? 'transparent' : textColor};`;
+	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
+	const style = `width: 140px; --internal-padding: 0px; text-align: center; font-weight:bold; font-size:${textSize}px; ${fontColor} ${fontShadow}`;
 
-	let img = '/assets/loading.gif';
-	let alt = 'alt';
+	$: img = `/assets/${$characterState[id].value}`;
+	$: alt = $characterState[id].label;
 </script>
 
-<div style="width: 200px; height:250px; marginLeft: {marginLeft}">
-	<img src={img} {alt} width="100%" height="100%" />
-	<Select
-		items={getCharacters(characterState)}
-		clearable={false}
-		inputStyles={style}
-		containerStyles={style}
-		on:change={setImage}
-	/>
+<div style="width:200px; height:250px; margin-left:{marginLeft}; display:block;">
+	<div style="display:flex; justify-content:center">
+		<img src={img} {alt} width="100px" height="100px" />
+	</div>
+	<div style="display: flex; justify-content:center;">
+		<Select
+			items={getCharacters($characterState)}
+			--border="none"
+			--value-container-overflow="visible"
+			--selected-item-overflow="visible"
+			--selected-item-padding="0px"
+			clearable={false}
+			inputStyles={style}
+			containerStyles={style + '; position: inherit'}
+			placeholder="Loading..."
+			on:change={handleChange}
+		/>
+	</div>
 </div>

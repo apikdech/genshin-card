@@ -4,7 +4,7 @@ export type CharacterType = {
 }
 
 export type CharacterState = {
-    id: string
+    id: number
     value: string
     label: string
 }

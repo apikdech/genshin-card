@@ -1,5 +1,5 @@
-<script>
-	import { initState, parseMarginLeft, parseTextSize, parseTotalCards } from '$lib/utils';
+<script lang="ts">
+	import { getCharacterState, parseMarginLeft, parseTextSize, parseTotalCards } from '$lib/utils';
 	import { page } from '$app/stores';
 	import CharacterDisplay from './CharacterDisplay.svelte';
 
@@ -10,20 +10,21 @@
 	const totalCards = parseTotalCards(layout);
 	const parsedTextSize = parseTextSize(textSize);
 
-	const states = initState(totalCards);
+	const characterStates = getCharacterState(totalCards);
 </script>
 
-<div style="display: flex; position:fixed; background:blue">
-	{#each states as state (state)}
+<div style="position: fixed; display: flex;">
+	<!-- {#each $characterStates as state (state.id)} -->
+	{#each $characterStates as state (state.id)}
 		<CharacterDisplay
 			id={state.id}
-			characterState={states}
+			{totalCards}
 			{textColor}
 			textSize={parsedTextSize}
 			{shadowColor}
 			{shadowSize}
 			transparent={transparent === 'true' ? true : false}
-			marginLeft={state.id === '0' ? '0' : marginLeft}
+			marginLeft={state.id === 0 ? '0' : marginLeft}
 		/>
 	{/each}
 </div>
