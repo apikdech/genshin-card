@@ -21,7 +21,7 @@
 
 	const fontColor = `color:${transparent ? 'transparent' : textColor};`;
 	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
-	const style = `width: 140px; --internal-padding: 0px; text-align: center; font-weight:bold; font-size:${textSize}px; ${fontColor} ${fontShadow}`;
+	const style = `width: 140px; --internal-padding: 0px; --item-padding: 0px; text-align: center; font-weight:bold; --font-size:${textSize}px; ${fontColor} ${fontShadow}`;
 
 	$: img = `/assets/${$characterState[id].value}`;
 	$: alt = $characterState[id].label;
@@ -41,7 +41,7 @@
 			clearable={false}
 			inputStyles={style}
 			containerStyles={style + '; position: inherit'}
-			placeholder="Loading..."
+			value={$characterState[id].label}
 			on:change={handleChange}
 		/>
 	</div>

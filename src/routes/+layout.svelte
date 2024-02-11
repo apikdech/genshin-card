@@ -1,9 +1,11 @@
 <script>
-    import './styles.css'
+	import './styles.css';
+	import { SvelteToast } from '@zerodevx/svelte-toast';
 </script>
 
 <div>
-    <main>
-        <slot />
-    </main>
+	<main>
+		<SvelteToast />
+		<slot />
+	</main>
 </div>

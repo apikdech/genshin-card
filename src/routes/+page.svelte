@@ -14,7 +14,6 @@
 </script>
 
 <div style="position: fixed; display: flex;">
-	<!-- {#each $characterStates as state (state.id)} -->
 	{#each $characterStates as state (state.id)}
 		<CharacterDisplay
 			id={state.id}

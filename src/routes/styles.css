@@ -11,3 +11,7 @@
 input::placeholder {
 	overflow: visible;
 }
+
+.slider-input {
+	width: 100%;
+}
