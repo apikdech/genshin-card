@@ -2,10 +2,17 @@
 	import { getCharacterState, parseMarginLeft, parseTextSize, parseTotalCards } from '$lib/utils';
 	import { page } from '$app/stores';
 	import CharacterDisplay from './CharacterDisplay.svelte';
+	import { browser } from '$app/environment';
+	import { error } from '@sveltejs/kit';
+
+	const searchParams = browser && $page.url.searchParams;
+
+	if (!searchParams) {
+		error(404);
+	}
 
 	const { textSize, textColor, distance, layout, transparent, shadowSize, shadowColor } =
-		Object.fromEntries($page.url.searchParams.entries());
-
+		Object.fromEntries(searchParams.entries());
 	const marginLeft = parseMarginLeft(distance);
 	const totalCards = parseTotalCards(layout);
 	const parsedTextSize = parseTextSize(textSize);

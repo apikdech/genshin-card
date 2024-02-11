@@ -13,11 +13,11 @@
 
 	const characterState = getCharacterState(totalCards);
 
-	function handleChange(event: CustomEvent) {
+	const handleChange = (event: CustomEvent) => {
 		const { label, value } = event.detail;
 		$characterState[id].label = label;
 		$characterState[id].value = value;
-	}
+	};
 
 	const fontColor = `color:${transparent ? 'transparent' : textColor};`;
 	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
