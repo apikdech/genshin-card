@@ -23,11 +23,11 @@
 
 	const handleClick = () => {
 		$banned = !$banned;
-	}
+	};
 
 	const fontColor = `color:${transparent ? 'transparent' : textColor};`;
 	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
-	const style = `width: 140px; --internal-padding: 0px; --item-padding: 0px; text-align: center; font-weight:bold; --font-size:${textSize}px; ${fontColor} ${fontShadow}`;
+	const style = `background: transparent; --list-background: transparent; --item-hover-bg: transparent; width: 140px; --internal-padding: 0px; --item-padding: 0px; text-align: center; font-weight:bold; --font-size:${textSize}px; ${fontColor} ${fontShadow}`;
 
 	$: img = `/assets/${$characterState[id].value}`;
 	$: alt = $characterState[id].label;
@@ -41,10 +41,20 @@
 
 <div style="width:200px; height:250px; margin-left:{marginLeft}; display:block;">
 	<div style="display:flex; justify-content:center">
-		<button type="button" on:click={handleClick} style="border: none; padding: 0px; background:none;">
+		<button
+			type="button"
+			on:click={handleClick}
+			style="border: none; padding: 0px; background:none;"
+		>
 			{#if $banned}
-				<img src='/assets/banned.webp' alt="banned" width="100px" height="100px" style="position: absolute;" />
-			{/if} 
+				<img
+					src="/assets/banned.webp"
+					alt="banned"
+					width="100px"
+					height="100px"
+					style="position: absolute;"
+				/>
+			{/if}
 			<img src={img} {alt} width="100px" height="100px" />
 		</button>
 	</div>
