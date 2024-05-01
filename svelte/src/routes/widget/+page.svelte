@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { getCharacterState, initState, parseMarginLeft, parseTextSize } from '$lib/utils';
+	import {
+		getCharacterState,
+		initState,
+		parseMarginLeft,
+		parseTextSize,
+		type GameType
+	} from '$lib/utils';
 	import Checkbox from '@smui/checkbox';
 	import Select from 'svelte-select';
 	import Slider from '@smui/slider';
@@ -14,6 +20,7 @@
 	let textColor = '#000000';
 	let shadowSize = -1;
 	let shadowColor = '#000000';
+	let gameType: GameType = 'genshin';
 
 	$: marginLeft = parseMarginLeft(distance.toString());
 	const characterStates = getCharacterState(totalCards);
@@ -39,10 +46,10 @@
 		});
 	};
 
-	$: key = `${textSize} ${shadowSize} ${textColor} ${shadowColor} ${transparent}`;
+	$: key = `${textSize} ${shadowSize} ${textColor} ${shadowColor} ${transparent} ${gameType}`;
 
 	$: url =
-		`${import.meta.env.VITE_BACKEND_URL}/?layout=${totalCards}&textSize=${textSize}` +
+		`${import.meta.env.VITE_BACKEND_URL}/${gameType === 'genshin' ? '' : gameType.toLowerCase()}?layout=${totalCards}&textSize=${textSize}` +
 		`&distance=${distance}&textColor=${encodeURIComponent(textColor)}` +
 		`&shadowSize=${shadowSize}&shadowColor=${encodeURIComponent(shadowColor)}` +
 		`&transparent=${transparent.toString()}`;
@@ -102,6 +109,18 @@
 		<Checkbox bind:checked={transparent} />
 	</div>
 
+	<div style="display: flex; align-items:center">
+		<p style="width: 20%;">Game</p>
+		<div style="display: flex; flex-direction: column;">
+			<label>
+				<input type="radio" name="gameType" bind:group={gameType} value="genshin" />Genshin
+			</label>
+			<label>
+				<input type="radio" name="gameType" bind:group={gameType} value="hsr" />HSR
+			</label>
+		</div>
+	</div>
+
 	<div>
 		<p>
 			Once you've finished configuring your widget, enter the following URL into a browser source:
@@ -127,6 +146,7 @@
 					shadowSize={shadowSize.toString()}
 					{transparent}
 					marginLeft={state.id === 0 ? '0' : marginLeft}
+					type={gameType}
 				/>
 			{/each}
 		{/key}

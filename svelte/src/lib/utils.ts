@@ -28,7 +28,7 @@ export const initState = ((num: number) => {
     value: 'loading.gif',
     label: 'Loading...'
   } as CharacterState))
-  
+
   return state;
 })
 
@@ -41,13 +41,19 @@ export const getCharacterState = (num: number) => {
   return stateHolder;
 };
 
-export const getCharacters = ((excluded: CharacterState[]) => {
-  let result: CharacterType[] = characters;
+export const resetStateHolder = () => {
+  stateHolder = undefined;
+}
+
+export const getCharacters = (type: GameType, excluded: CharacterState[]) => {
+  let result: CharacterType[] = characters[type];
 
   for (let index = 0; index < excluded.length; index++) {
     const exChar: CharacterType = { value: excluded[index].value, label: excluded[index].label }
     result = result.filter(item => item.label !== exChar.label)
   }
-  
+
   return result
-})
+}
+
+export type GameType = 'genshin' | 'hsr';

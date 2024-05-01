@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getCharacterState, parseMarginLeft, parseTextSize, parseTotalCards } from '$lib/utils';
 	import { page } from '$app/stores';
-	import CharacterDisplay from './CharacterDisplay.svelte';
+	import CharacterDisplay from '../CharacterDisplay.svelte';
 	import { browser } from '$app/environment';
 	import { error } from '@sveltejs/kit';
 
@@ -31,7 +31,7 @@
 			{shadowSize}
 			transparent={transparent === 'true' ? true : false}
 			marginLeft={state.id === 0 ? '0' : marginLeft}
-			type="genshin"
+			type="hsr"
 		/>
 	{/each}
 </div>

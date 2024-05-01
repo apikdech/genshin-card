@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Select from 'svelte-select';
-	import { getCharacterState, getCharacters } from '$lib/utils';
+	import { getCharacterState, getCharacters, resetStateHolder, type GameType } from '$lib/utils';
 	import { getBanned } from '$lib/stores';
+	import { onDestroy } from 'svelte';
 
 	export let id: number;
 	export let textColor: string;
@@ -11,6 +12,7 @@
 	export let shadowSize: string;
 	export let shadowColor: string;
 	export let totalCards: number;
+	export let type: GameType;
 
 	const banned = getBanned;
 	const characterState = getCharacterState(totalCards);
@@ -29,7 +31,7 @@
 	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
 	const style = `background: transparent; --list-background: transparent; --item-hover-bg: transparent; width: 140px; --internal-padding: 0px; --item-padding: 0px; text-align: center; font-weight:bold; --font-size:${textSize}px; ${fontColor} ${fontShadow}`;
 
-	$: img = `/assets/${$characterState[id].value}`;
+	$: img = `/assets/${type}/${$characterState[id].value}`;
 	$: alt = $characterState[id].label;
 
 	const floatingConfig = {
@@ -37,6 +39,8 @@
 		placement: 'bottom',
 		middleware: []
 	};
+
+	onDestroy(() => resetStateHolder());
 </script>
 
 <div style="width:200px; height:250px; margin-left:{marginLeft}; display:block;">
@@ -60,7 +64,7 @@
 	</div>
 	<div style="display: flex; justify-content:center;">
 		<Select
-			items={getCharacters($characterState)}
+			items={getCharacters(type, $characterState)}
 			--border="none"
 			--value-container-overflow="visible"
 			--selected-item-overflow="visible"
