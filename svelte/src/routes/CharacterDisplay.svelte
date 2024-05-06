@@ -1,6 +1,13 @@
 <script lang="ts">
 	import Select from 'svelte-select';
-	import { getCharacterState, getCharacters, resetStateHolder, type GameType } from '$lib/utils';
+	import {
+		characterDataStore,
+		getCharacterState,
+		getCharacters,
+		getCharactersViaSpreadsheet,
+		resetStateHolder,
+		type GameType
+	} from '$lib/utils';
 	import { getBanned } from '$lib/stores';
 	import { onDestroy } from 'svelte';
 
@@ -12,7 +19,7 @@
 	export let shadowSize: string;
 	export let shadowColor: string;
 	export let totalCards: number;
-	export let type: GameType;
+	export let type: GameType | null = null;
 
 	const banned = getBanned;
 	const characterState = getCharacterState(totalCards);
@@ -31,7 +38,11 @@
 	const fontShadow = `text-shadow:${transparent ? '' : `1px 1px ${shadowSize}px ${shadowColor}`}`;
 	const style = `background: transparent; --list-background: transparent; --item-hover-bg: transparent; width: 140px; --internal-padding: 0px; --item-padding: 0px; text-align: center; font-weight:bold; --font-size:${textSize}px; ${fontColor} ${fontShadow}`;
 
-	$: img = `/assets/${type}/${$characterState[id].value}`;
+	$: img = $characterState[id].label.includes('Loading')
+		? '/assets/loading.gif'
+		: !!type
+			? `/assets/${type}/${$characterState[id].value}`
+			: $characterState[id].value;
 	$: alt = $characterState[id].label;
 
 	const floatingConfig = {
@@ -64,7 +75,9 @@
 	</div>
 	<div style="display: flex; justify-content:center;">
 		<Select
-			items={getCharacters(type, $characterState)}
+			items={!!type
+				? getCharacters(type, $characterState)
+				: getCharactersViaSpreadsheet($characterState, $characterDataStore)}
 			--border="none"
 			--value-container-overflow="visible"
 			--selected-item-overflow="visible"

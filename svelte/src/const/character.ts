@@ -1,6 +1,6 @@
-import type { GameType } from "$lib/utils";
+import type { GameType } from '$lib/utils';
 
-export type CharacterType = {
+export type Character = {
 	value: string;
 	label: string;
 };
@@ -11,9 +11,8 @@ export type CharacterState = {
 	label: string;
 };
 
-export const characters: Record<GameType, CharacterType[]> =
-{
-	'genshin': [
+export const characters: Record<GameType, Character[]> = {
+	genshin: [
 		{ value: 'aether.webp', label: 'Aether' },
 		{ value: 'albedo.png', label: 'Albedo' },
 		{ value: 'alhaitham.png', label: 'Alhaitham' },
@@ -95,7 +94,7 @@ export const characters: Record<GameType, CharacterType[]> =
 		{ value: 'yunjin.png', label: 'Yun Jin' },
 		{ value: 'zhongli.png', label: 'Zhongli' }
 	].sort((a, b) => (a.label < b.label ? -1 : 1)),
-	'hsr': [
+	hsr: [
 		{ value: 'qingque.png', label: 'Qingque' },
 		{ value: 'herta.gif', label: 'Herta' },
 		{ value: 'ruanmei.gif', label: 'Ruan Mei' }
