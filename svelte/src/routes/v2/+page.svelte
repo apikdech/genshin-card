@@ -21,6 +21,9 @@
 
 	const { textSize, textColor, distance, layout, transparent, shadowSize, shadowColor, id } =
 		Object.fromEntries(searchParams.entries());
+	if (id === undefined) {
+		window.location.href = '/404';
+	}
 	const marginLeft = parseMarginLeft(distance);
 	const totalCards = parseTotalCards(layout);
 	const parsedTextSize = parseTextSize(textSize);
@@ -28,10 +31,12 @@
 	const characterStates = getCharacterState(totalCards);
 
 	onMount(() => {
-		const spreadSheetId = id === undefined ? '1bEye6zR-lmqot0nMHfIJ3YNoy3YJifj6Be56gtHK17k' : id;
-		initCharacterData(spreadSheetId)
+		initCharacterData(id)
 			.then((data) => ($characterDataStore = data))
-			.catch((e) => console.error(e));
+			.catch((e) => {
+				console.error(e);
+				window.location.href = '/404';
+			});
 	});
 </script>
 

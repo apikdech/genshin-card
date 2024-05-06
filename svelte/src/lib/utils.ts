@@ -121,11 +121,13 @@ const fetchCharacterData = async (spreadsheetId: string) => {
 				}
 			}
 			return data.sort((a, b) => (a.label < b.label ? -1 : 1));
+		} else {
+			throw new Error('Failed to fetch');
 		}
 	} catch (e) {
 		console.error('Failed to fetch spreadsheet data', e);
+		throw e;
 	}
-	return [];
 };
 
 export const initCharacterData = async (spreadsheetId: string) => {
