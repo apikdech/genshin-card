@@ -19,21 +19,19 @@
 		error(404);
 	}
 
-	const { textSize, textColor, distance, layout, transparent, shadowSize, shadowColor } =
+	const { textSize, textColor, distance, layout, transparent, shadowSize, shadowColor, id } =
 		Object.fromEntries(searchParams.entries());
 	const marginLeft = parseMarginLeft(distance);
 	const totalCards = parseTotalCards(layout);
 	const parsedTextSize = parseTextSize(textSize);
 
 	const characterStates = getCharacterState(totalCards);
-	const spreadSheetId = '1bEye6zR-lmqot0nMHfIJ3YNoy3YJifj6Be56gtHK17k';
 
 	onMount(() => {
-		if (!!spreadSheetId) {
-			initCharacterData(spreadSheetId)
-				.then((data) => ($characterDataStore = data))
-				.catch((e) => console.error(e));
-		}
+		const spreadSheetId = id === undefined ? '1bEye6zR-lmqot0nMHfIJ3YNoy3YJifj6Be56gtHK17k' : id;
+		initCharacterData(spreadSheetId)
+			.then((data) => ($characterDataStore = data))
+			.catch((e) => console.error(e));
 	});
 </script>
 
