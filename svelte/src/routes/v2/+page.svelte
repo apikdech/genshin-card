@@ -8,7 +8,7 @@
 		characterDataStore
 	} from '$lib/utils';
 	import { page } from '$app/stores';
-	import CharacterDisplay from '../../CharacterDisplay.svelte';
+	import CharacterDisplay from '../CharacterDisplay.svelte';
 	import { browser } from '$app/environment';
 	import { error } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
