@@ -35,8 +35,8 @@
 		$characterStates = initState(totalCards);
 	};
 
-	const handleCopyButton = () => {
-		navigator.clipboard.writeText(url);
+	const handleCopyButton = (data: string) => {
+		navigator.clipboard.writeText(data);
 		toast.push('Copied to clipboard!', {
 			theme: {
 				'--toastColor': 'mintcream',
@@ -53,6 +53,12 @@
 		`&distance=${distance}&textColor=${encodeURIComponent(textColor)}` +
 		`&shadowSize=${shadowSize}&shadowColor=${encodeURIComponent(shadowColor)}` +
 		`&transparent=${transparent.toString()}`;
+
+	$: v2Url =
+		`${import.meta.env.VITE_BACKEND_URL}/v2?layout=${totalCards}&textSize=${textSize}` +
+		`&distance=${distance}&textColor=${encodeURIComponent(textColor)}` +
+		`&shadowSize=${shadowSize}&shadowColor=${encodeURIComponent(shadowColor)}` +
+		`&transparent=${transparent.toString()}&id=`;
 </script>
 
 <div style="margin-left: 5%; margin-right: 10%">
@@ -129,7 +135,18 @@
 			<a href={url} target="_blank">
 				<pre>{url}</pre>
 			</a>
-			<button on:click={handleCopyButton} style="margin-left: 10px;">Copy to clipboard</button>
+			<button on:click={() => handleCopyButton(url)} style="margin-left: 10px;"
+				>Copy to clipboard</button
+			>
+		</div>
+
+		<div style="display: flex; align-items:center">
+			<a href={v2Url} target="_blank">
+				<pre>{v2Url}</pre>
+			</a>
+			<button on:click={() => handleCopyButton(v2Url)} style="margin-left: 10px;"
+				>Copy to clipboard</button
+			>
 		</div>
 	</div>
 
